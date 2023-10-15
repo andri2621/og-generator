@@ -17,11 +17,15 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: #fff;
+  background: #222;
+}
+
+.layout {
+  /* 750px */
+  /* max-width: 43.75rem; */
+
+  /* 1100px */
+  max-width: 68.75rem;
+  @apply w-11/12 mx-auto;
 }
