@@ -15,3 +15,15 @@ body {
   max-width: 68.75rem;
   @apply w-11/12 mx-auto;
 }
+
+.cursor-new-tab {
+  cursor: url(/images/new-tab.png) 10 10, pointer;
+}
+
+.cursor-copy-black {
+  cursor: url(/images/copy-black.png) 10 10, pointer;
+}
+
+.cursor-copy-white {
+  cursor: url(/images/copy-white.png) 10 10, pointer;
+}

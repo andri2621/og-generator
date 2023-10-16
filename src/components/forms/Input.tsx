@@ -39,11 +39,14 @@ const Input = ({
           id={id}
           readOnly={readOnly}
           className={clsx(
-            "focus:ring-cyan-500 px-1 focus-visible:outline-cyan-500 border-2 border-slate-400 text-black text-sm focus:border-cyan-500 block w-full rounded-md shadow-sm"
+            "focus:ring-teal-500 px-1 focus-visible:outline-teal-500 border-2 border-slate-400 text-black text-sm focus:border-teal-500 block w-full rounded-md shadow-sm"
           )}
           placeholder={placeholder}
           aria-describedby={id}
         />
+      </div>
+      <div className="mt-1">
+        {helperText && <p className="text-xs text-gray-500">{helperText}</p>}
       </div>
     </div>
   );

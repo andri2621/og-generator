@@ -1,4 +1,5 @@
 import { ImageResponse } from "@vercel/og";
+import { NextRequest } from "next/server";
 
 export const runtime = "edge";
 
@@ -6,99 +7,141 @@ const interExtrabold = fetch(
   new URL("../../../../public/fonts/Inter-ExtraBold.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer());
 
-export async function GET(request: Request) {
-  const interFont = await interExtrabold;
-
+export async function GET(request: NextRequest) {
   try {
+    const interFontExtraBold = await interExtrabold;
     const { origin, searchParams } = new URL(request.url);
 
     const title = searchParams.has("title");
     const siteName = searchParams.get("siteName");
-    const description = searchParams.get("description");
-    const bgColor = searchParams.get("bgColor");
 
     const avatar = searchParams.get("avatar");
     const author = searchParams.get("author");
     const userName = searchParams.get("userName");
+
+    const bgType = searchParams.get("bgType");
+    const bgColor = searchParams.get("bgColor");
+    const bgImageUrl = searchParams.get("bgImageUrl");
 
     const query = {
       title: title
         ? searchParams.get("title")?.slice(0, 100)
         : "My Default Title",
       siteName: siteName ?? "Site Name",
-      description: description ?? "Description",
       avatar: avatar ?? `${origin}/images/avatar.png`,
       author: author ?? "Author Name",
       userName: userName ?? "User Name",
-      bgColor: bgColor ? `#${bgColor}` : `url(${origin}/images/bg-purple.jpg)`,
+      bgType,
+      bgColor: bgColor ? `${decodeURIComponent(bgColor)}` : "black",
+      bgImageUrl,
     };
 
     return new ImageResponse(
       (
         <div
           style={{
-            background: query.bgColor,
-            // backgroundColor: "#222222",
-            backgroundSize: "100% 100%",
-            height: "630px",
+            height: "100%",
             width: "100%",
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
             justifyContent: "center",
             fontFamily: "Inter",
-            padding: "40px 80px",
+            position: "relative",
+            backgroundColor: `${query.bgColor}`,
           }}
         >
+          {query.bgType !== "color" && (
+            <img
+              src={
+                query.bgType === "image"
+                  ? `${query.bgImageUrl}`
+                  : `${origin}/images/bg-purple.jpg`
+              }
+              alt="bg-image"
+              tw="absolute w-full h-full top-0 left-0 right-0 bottom-0"
+              style={{ objectFit: "cover" }}
+            />
+          )}
+
           <div
             style={{
+              height: "100%",
+              width: "100%",
+              fontFamily: "Inter",
               display: "flex",
-              backgroundColor: "#14b8a6",
-              padding: "4px",
-              border: "1px solid black",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              justifyContent: "center",
+              padding: "0 5rem",
             }}
           >
-            {query.siteName}
-          </div>
-          <div
-            style={{
-              display: "flex",
-              fontSize: 60,
-              fontWeight: 800,
-              letterSpacing: "-0.025em",
-              lineHeight: 1,
-              color: "white",
-              marginTop: 24,
-              marginBottom: 24,
-              whiteSpace: "pre-wrap",
-              textTransform: "capitalize",
-            }}
-          >
-            {query.title}
-          </div>
-          <div
-            style={{
-              display: "flex",
-              gap: 8,
-              alignItems: "center",
-            }}
-          >
-            <img width={80} height={80} src={query.avatar} alt="avatar-img" />
             <div
               style={{
                 display: "flex",
-                flexDirection: "column",
-                color: "white",
+                backgroundColor: "#14b8a6",
+                padding: "4px",
+                border: "1px solid black",
               }}
             >
-              <div className="author-name" style={{ fontSize: 28 }}>
-                {query.author}
-              </div>
+              {query.siteName}
+            </div>
+            <div
+              style={{
+                display: "flex",
+                fontSize: 60,
+                fontWeight: 800,
+                letterSpacing: "-0.025em",
+                lineHeight: 1,
+                color: "white",
+                marginTop: 24,
+                marginBottom: 24,
+                whiteSpace: "pre-wrap",
+                textTransform: "capitalize",
+              }}
+            >
+              {query.title}
+            </div>
+            <div
+              style={{
+                display: "flex",
+                gap: 24,
+                alignItems: "center",
+              }}
+            >
+              <img
+                width={80}
+                height={80}
+                src={query.avatar}
+                alt="avatar-img"
+                style={{
+                  borderRadius: "50px",
+                  objectFit: "cover",
+                }}
+              />
               <div
-                className="author-desc"
-                style={{ color: "lightgrey", fontSize: 18 }}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  color: "white",
+                }}
               >
-                {query.userName}
+                <div
+                  className="author-name"
+                  style={{ fontSize: 28, fontWeight: 800 }}
+                >
+                  {query.author}
+                </div>
+                <div
+                  className="author-desc"
+                  style={{
+                    color: "lightgrey",
+                    fontSize: 18,
+                    fontWeight: 800,
+                  }}
+                >
+                  {query.userName}
+                </div>
               </div>
             </div>
           </div>
@@ -110,7 +153,7 @@ export async function GET(request: Request) {
         fonts: [
           {
             name: "Inter",
-            data: interFont,
+            data: interFontExtraBold,
             style: "normal",
             weight: 800,
           },

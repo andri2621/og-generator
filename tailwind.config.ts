@@ -10,9 +10,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      // backgroundImage: {
-      //   "default-img": "url('/images/bg-purple.jpg')",
-      // },
+      backgroundImage: {
+        "default-img": "url('/images/bg-purple.jpg')",
+      },
       fontFamily: {
         primary: ["Inter", ...fontFamily.sans],
       },
