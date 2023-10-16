@@ -1,6 +1,6 @@
 import React from "react";
 
-type GeneratorProps = {
+type GeneralProps = {
   formData: {
     title?: string;
     siteName?: string;
@@ -15,7 +15,7 @@ type GeneratorProps = {
   };
 };
 
-const GeneratorResult: React.FC<GeneratorProps> = ({ formData }) => {
+const GeneralResult: React.FC<GeneralProps> = ({ formData }) => {
   return (
     <div
       className="w-full h-auto aspect-video flex flex-col justify-center items-center p-6"
@@ -51,4 +51,4 @@ const GeneratorResult: React.FC<GeneratorProps> = ({ formData }) => {
   );
 };
 
-export default GeneratorResult;
+export default GeneralResult;

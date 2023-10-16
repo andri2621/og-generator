@@ -1,5 +1,5 @@
 {
-  "name": "og-vercel-generator",
+  "name": "og-generator",
   "version": "0.1.0",
   "private": true,
   "scripts": {

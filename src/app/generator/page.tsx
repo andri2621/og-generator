@@ -7,8 +7,8 @@ import clsx from "clsx";
 import queryString from "query-string";
 import { useEffect, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import GeneratorResult from "../(result)/GeneratorResult";
-import BlogResult from "../(result)/BlogResult";
+import GeneratorResult from "./GeneralResult";
+import BlogResult from "./BlogResult";
 import Divider from "@/components/Divider";
 import Modal from "@/components/Modal";
 
@@ -175,7 +175,7 @@ export default function Home() {
                     />
                   )}
                 </div>
-                <button className="w-full md:w-1/3 h-10 bg-teal-500 text-black px-4 py-1  mt-5 rounded-lg hover:bg-teal-600 outline-none">
+                <button className="w-full md:w-1/3 h-10 bg-teal-500 text-black px-4 py-1  my-5 rounded-lg hover:bg-teal-600 outline-none">
                   Generate
                 </button>
               </div>

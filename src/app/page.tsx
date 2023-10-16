@@ -4,10 +4,8 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center ">
       <div className="layout">
-        <div className="min-h-screen flex flex-col justify-center items-center">
-          <h1 className="text-xl md:text-3xl font-bold text-center">
-            Opengraph Generator
-          </h1>
+        <div className="min-h-screen flex flex-col justify-center items-center text-center">
+          <h1 className="text-xl md:text-3xl font-bold">Opengraph Generator</h1>
 
           <div className="text-sm text-neutral-400">
             For personal use. Created with
@@ -35,16 +33,6 @@ export default function Home() {
               Generator
             </Link>
           </div>
-
-          <footer className="absolute text-white bottom-2 font-light text-sm">
-            © {new Date().getFullYear()} By{" "}
-            <Link
-              href="https://awandri.com"
-              className="cursor-new-tab font-bold hover:text-teal-500 text-md underline decoration-double"
-            >
-              Andi Setiawan
-            </Link>
-          </footer>
         </div>
       </div>
     </main>
