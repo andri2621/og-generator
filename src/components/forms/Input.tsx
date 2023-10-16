@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import React from "react";
+import { useFormContext } from "react-hook-form";
 
 type InputProps = {
   label: string;
@@ -19,6 +20,11 @@ const Input = ({
   className,
   ...rest
 }: InputProps) => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
   return (
     <div className={clsx(className)}>
       <label htmlFor={id} className="block text-sm font-normal text-white">
@@ -26,6 +32,7 @@ const Input = ({
       </label>
       <div className="relative mt-1">
         <input
+          {...register(id)}
           {...rest}
           type={type}
           name={id}
