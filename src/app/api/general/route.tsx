@@ -8,14 +8,9 @@ const interExtrabold = fetch(
   new URL("../../../../public/fonts/Inter-ExtraBold.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer());
 
-const interRegular = fetch(
-  new URL("../../../../public/fonts/Inter-Regular.ttf", import.meta.url)
-).then((res) => res.arrayBuffer());
-
 export async function GET(req: NextRequest) {
   try {
     const interFontExtraBold = await interExtrabold;
-    const interFontRegular = await interRegular;
 
     const { origin, searchParams } = new URL(req.url);
 
@@ -34,12 +29,10 @@ export async function GET(req: NextRequest) {
       title: title ?? "Default Title",
       siteName: siteName ?? "Default Site Name",
       description,
-      //logo
       logo: logo ?? `${origin}/images/awandri.png`,
       borderWidth,
       borderRadius,
       borderColor: borderColor ? `${decodeURIComponent(borderColor)}` : "black",
-      //background
       bgType,
       bgColor: bgColor ? `${decodeURIComponent(bgColor)}` : "black",
       bgImageUrl,
@@ -57,7 +50,6 @@ export async function GET(req: NextRequest) {
             alignItems: "center",
             justifyContent: "center",
             textAlign: "center",
-            // padding: "0 5rem",
             position: "relative",
             backgroundColor: `${query.bgColor}`,
           }}
@@ -126,9 +118,8 @@ export async function GET(req: NextRequest) {
             {query.description && (
               <p
                 style={{
-                  color: "#f9fafb",
-                  fontWeight: 400,
-                  fontSize: 20,
+                  color: "#f1f5f9",
+                  fontSize: 24,
                 }}
               >
                 {query.description}
@@ -146,12 +137,6 @@ export async function GET(req: NextRequest) {
             data: interFontExtraBold,
             style: "normal",
             weight: 800,
-          },
-          {
-            name: "Inter",
-            data: interFontRegular,
-            style: "normal",
-            weight: 400,
           },
         ],
       }

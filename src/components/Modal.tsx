@@ -1,6 +1,5 @@
 "use client";
 
-import clsx from "clsx";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -23,12 +22,7 @@ const Modal: React.FC<ModalProps> = ({ className, link, closeModal }) => {
   };
 
   return (
-    <div
-      className={clsx(
-        className,
-        "fixed top-0 left-0 w-full h-full flex items-center justify-center z-50 "
-      )}
-    >
+    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50">
       {/* Color Overlay */}
       <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50"></div>
       {/* LAYOUT */}
