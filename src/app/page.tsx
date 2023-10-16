@@ -8,7 +8,7 @@ export default function Home() {
           <h1 className="text-xl md:text-3xl font-bold">Opengraph Generator</h1>
 
           <div className="text-sm text-neutral-400">
-            For personal use. Created with
+            Made for personal use. Created with
             <Link
               href="https://vercel.com/docs/functions/edge-functions/og-image-generation"
               target="_blank"
